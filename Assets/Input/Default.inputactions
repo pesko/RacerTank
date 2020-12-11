@@ -1,0 +1,110 @@
+{
+    "name": "Default",
+    "maps": [
+        {
+            "name": "Tank",
+            "id": "766038bf-8295-43ed-9a59-befa238b5925",
+            "actions": [
+                {
+                    "name": "Drive",
+                    "type": "Value",
+                    "id": "aba00835-eeec-4a91-b457-d85eabe4e454",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "931247a8-1d10-4623-867c-d0e516d2361e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Turret",
+                    "type": "Value",
+                    "id": "11948e18-27f1-4382-a69b-f74806c2841e",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "35df39de-0a27-497b-9403-bc00c1e484ed",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "TankControls",
+                    "action": "Drive",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c29c186b-3d2e-410a-8a4c-410635c30d85",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "TankControls",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8b603250-7639-4390-a4e6-5fa85105a126",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "TankControls",
+                    "action": "Turret",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "171fb06a-f605-4045-a178-4843ed8d1f1e",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "3c4ec671-b4c9-438f-aa26-449d17bcdcae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1a41fa39-2efa-411f-9ff8-007154cee1dd",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "TankControls",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "TankControls",
+            "bindingGroup": "TankControls",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
