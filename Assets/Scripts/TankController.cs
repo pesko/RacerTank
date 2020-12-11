@@ -11,24 +11,60 @@ public class TankController : MonoBehaviour
     private Rigidbody _rb;
     [SerializeField]
     private Transform _turretPivot;
+    [SerializeField]
+    private Quaternion _turretRot;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private float _distanceToGround;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private PlayerInput _input;
 
-    public void OnDrive(InputValue value)
+
+    private void KeepTurretRotation()
 	{
-        var val = value.Get<Vector2>();
+        _turretPivot.rotation = _turretRot;
+	}
+
+    private void FaceVelocity()
+	{
+        var velIgnoreY = _rb.velocity;
+        velIgnoreY.y = 0;
+        var rot = Quaternion.LookRotation(velIgnoreY.normalized);
+        var step = 0.1f * (_rb.velocity.magnitude / _maxSpeed);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, step);
+	}
+
+    private bool IsGrounded()
+	{
+        Vector3 down = transform.TransformDirection(Vector3.down);
+
+        if (Physics.Raycast(transform.position, down, 0.3f))
+		{
+            return true;
+		}
+        return false;
+	}
+
+    private void KeepGrounded()
+	{
+        Vector3 down = transform.TransformDirection(Vector3.down);
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, down, out hit, 5f))
+        {
+            var pos = transform.position;
+            pos.y = hit.point.y;
+            transform.position = pos;
+        }
+    }
+
+    public void OnDrive(InputAction.CallbackContext callback)
+    {
+        var val = callback.ReadValue<Vector2>();
+
         if (val.x == 0 && val.y == 0)
         {
+            var deceleration = 0.5f * _rb.velocity;
+            _rb.velocity = deceleration;
             return;
         }
 
@@ -39,16 +75,10 @@ public class TankController : MonoBehaviour
         vel.x = Mathf.Clamp(vel.x, -_maxSpeed, _maxSpeed);
         vel.y = Mathf.Clamp(vel.y, -_maxSpeed, _maxSpeed);
 
-        var localDir = 
-
         _rb.velocity = vel;
 
-        var rot = Quaternion.LookRotation(moveVector);
-        if (val.x != 0 && val.y != 0)
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.05f);
-        }
-	}
+        print(vel);
+    }
 
     public void OnTurret(InputValue value)
 	{
@@ -63,7 +93,8 @@ public class TankController : MonoBehaviour
         var lookrot = Quaternion.LookRotation(joystickRot);
         if (val.x != 0 && val.y != 0)
         {
-            _turretPivot.transform.rotation = Quaternion.Lerp(_turretPivot.transform.rotation, lookrot, 0.1f);
+            _turretPivot.rotation = Quaternion.Lerp(_turretPivot.transform.rotation, lookrot, 0.1f);
+            _turretRot = _turretPivot.rotation;
         }
     }
 
@@ -71,4 +102,26 @@ public class TankController : MonoBehaviour
 	{
 
 	}
+
+    void Start()
+    {
+        _turretRot = _turretPivot.transform.rotation;
+
+        _input = InputMaster.Instance.PlayerInput;
+
+		_input.Tank.Drive.performed += OnDrive;
+    }
+
+	// Update is called once per frame
+	void Update()
+    {
+        FaceVelocity();
+        KeepTurretRotation();
+        //KeepGrounded();
+    }
+
+	private void OnDestroy()
+	{
+		_input.Tank.Drive.performed -= OnDrive;
+    }
 }
