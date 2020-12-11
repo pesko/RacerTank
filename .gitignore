@@ -1,0 +1,16 @@
+/Library
+/Temp
+_ReSharper.*
+*.csproj
+*.sln
+*.DotSettings
+obj/
+*.suo
+*.user
+*.unityproj
+/Builds
+*.userprefs
+/build
+*.CSharp.ruleset
+TempScenes/
+.vs/
