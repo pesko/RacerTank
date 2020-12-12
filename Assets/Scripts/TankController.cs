@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.VFX;
 
 public class TankController : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class TankController : MonoBehaviour
     private AudioSource _barrelAudio;
     [SerializeField]
     private AudioClip _shotFX;
+    [SerializeField]
+    private VisualEffect _shotVFX;
 
     #endregion Serialized Fields
 
@@ -94,6 +97,7 @@ public class TankController : MonoBehaviour
     {
         _barrelAnimator.Play(_barrelAnimation.name);
         _barrelAudio.PlayOneShot(_shotFX);
+        _shotVFX.SendEvent("OnPlay");
     }
 
     #endregion Private Methods
