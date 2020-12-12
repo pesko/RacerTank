@@ -754,7 +754,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1275539475}
   - component: {fileID: 1275539474}
-  - component: {fileID: 1275539473}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -762,21 +761,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1275539473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275539472}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30d466bd8913ab54688dce775239b115, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: {fileID: 1037144397}
-  _keepOffset: 1
-  _offset: {x: 0, y: 0, z: 0}
 --- !u!114 &1275539474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -819,7 +803,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275539472}
-  m_LocalRotation: {x: 0.4512908, y: -0.000000015354576, z: 0.000000007765081, w: 0.89237696}
+  m_LocalRotation: {x: 0.4512908, y: 0.00000001535458, z: -0.000000007765083, w: 0.89237696}
   m_LocalPosition: {x: 0, y: 14.09, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1243,7 +1227,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0.4512908, y: -0.000000015354576, z: 0.000000007765081, w: 0.89237696}
+  m_LocalRotation: {x: 0.4512908, y: 0.00000001535458, z: -0.000000007765083, w: 0.89237696}
   m_LocalPosition: {x: 0, y: 14.09, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1669,29 +1653,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 926195336530959472, guid: 4147e4c84b2fb6f4e9bbc4309f79763b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 926195336530959474, guid: 4147e4c84b2fb6f4e9bbc4309f79763b, type: 3}
       propertyPath: m_Name
       value: Tanks
-      objectReference: {fileID: 0}
-    - target: {fileID: 926195336530959476, guid: 4147e4c84b2fb6f4e9bbc4309f79763b, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: c7c95d663d0c0534f8e6ac7263c7e5f7, type: 2}
-    - target: {fileID: 926195336530959477, guid: 4147e4c84b2fb6f4e9bbc4309f79763b, type: 3}
-      propertyPath: m_Drag
-      value: 1.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 926195336530959477, guid: 4147e4c84b2fb6f4e9bbc4309f79763b, type: 3}
-      propertyPath: m_AngularDrag
-      value: 2.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 926195336530959477, guid: 4147e4c84b2fb6f4e9bbc4309f79763b, type: 3}
-      propertyPath: m_Mass
-      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 926195336530959478, guid: 4147e4c84b2fb6f4e9bbc4309f79763b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1737,10 +1701,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 926195336530959479, guid: 4147e4c84b2fb6f4e9bbc4309f79763b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 926195336530959479, guid: 4147e4c84b2fb6f4e9bbc4309f79763b, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4147e4c84b2fb6f4e9bbc4309f79763b, type: 3}
