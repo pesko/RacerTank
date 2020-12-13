@@ -426,7 +426,6 @@ GameObject:
   - component: {fileID: 926195336530959479}
   - component: {fileID: 926195336530959473}
   - component: {fileID: 926195336530959477}
-  - component: {fileID: 926195336530959476}
   m_Layer: 0
   m_Name: Tanks
   m_TagString: Untagged
@@ -499,20 +498,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 3
---- !u!136 &926195336530959476
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 926195336530959474}
-  m_Material: {fileID: 13400000, guid: c7c95d663d0c0534f8e6ac7263c7e5f7, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!1 &1476840452761310996
 GameObject:
   m_ObjectHideFlags: 0

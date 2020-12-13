@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 
@@ -24,6 +25,12 @@ public class TankController : MonoBehaviour
     private AudioClip _shotFX;
     [SerializeField]
     private VisualEffect _shotVFX;
+    [SerializeField]
+    private VisualEffect _impactVFX;
+    [SerializeField]
+    private Transform _muzzle;
+    [SerializeField]
+    private UnityEvent _shakeEvent;
 
     #endregion Serialized Fields
 
@@ -70,7 +77,7 @@ public class TankController : MonoBehaviour
 
     private void Turret()
 	{
-        _turretPivot.rotation = Quaternion.Lerp(_turretPivot.transform.rotation, _turretRot, 0.25f);
+        _turretPivot.rotation = Quaternion.Lerp(_turretPivot.transform.rotation, _turretRot, 0.05f);
     }
 
     private void ApplyGravity()
@@ -98,6 +105,20 @@ public class TankController : MonoBehaviour
         _barrelAnimator.Play(_barrelAnimation.name);
         _barrelAudio.PlayOneShot(_shotFX);
         _shotVFX.SendEvent("OnPlay");
+        _shakeEvent?.Invoke();
+
+        Ray ray = new Ray(_muzzle.transform.position, _muzzle.TransformDirection(Vector3.forward));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 9999))
+        {
+            _impactVFX.transform.rotation = Quaternion.LookRotation(hit.normal);
+            _impactVFX.transform.position = hit.point;
+            _impactVFX.SendEvent("OnPlay");
+            if (hit.transform.CompareTag("Target"))
+			{
+                Destroy(hit.transform.gameObject);
+			}
+		}
     }
 
     #endregion Private Methods
@@ -112,7 +133,7 @@ public class TankController : MonoBehaviour
 
 		_input.Tank.Drive.performed += OnDrive;
         _input.Tank.Turret.performed += OnTurret;
-        _input.Tank.Shoot.performed += OnShoot;
+        _input.Tank.Shoot.started += OnShoot;
     }
 
     // Update is called once per frame
@@ -121,14 +142,18 @@ public class TankController : MonoBehaviour
         FaceVelocity();
     }
 
-	protected void FixedUpdate()
+    protected void FixedUpdate()
 	{
         Drive();
-        Turret();
         ApplyGravity();
 	}
 
-	private void OnDestroy()
+	protected void LateUpdate()
+	{
+        Turret();
+    }
+
+    private void OnDestroy()
 	{
 		_input.Tank.Drive.performed -= OnDrive;
         _input.Tank.Turret.performed -= OnTurret;
